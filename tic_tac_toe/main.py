@@ -1,12 +1,14 @@
 def hello():
     print ('Hello, let\'s play Tic Tac Toe!')
 
-arr = [[' ','x',' ','|',' ',' ',' ','|',' ',' ',' '],
+#Initializes array grid
+arr = np.array([[' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
        ['-','-','-','|','-','-','-','|','-','-','-'],
        [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
        ['-','-','-','|','-','-','-','|','-','-','-'],
-       [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ']]
+       [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ']])
 
+#Prints example grid with positions
 def print_grid_example():
     arr1 = [[' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
        ['-','-','-','|','-','-','-','|','-','-','-'],
@@ -25,17 +27,41 @@ def print_grid_example():
     for row in arr1:
         print(' '.join([str(elem) for elem in row]))
 
+#Updates grid
 def update_grid(j,k):
     for row in arr:
         arr[j][k] = 'x'
-        
+
+#Prints grid       
 def print_grid():
     for row in arr:
         print(' '.join([str(elem) for elem in row]))
+#Checks rows
+def check_row():
+    for row in arr:
+        if row[1] == 'x' and row[5] == 'x' and row[9] == 'x':
+            print ('You won!')
+            return
+    print ('You lost')
 
+#Checks columns           
+def check_column():
+    for col in arr.T:
+        if col[0] == 'x' and col[2] == 'x' and col[4] == 'x':
+            print ('You won!')
+            return
+    print ('You lost')
+
+#Checks diagonally
+def check_diagonally():
+    if (arr[0][1] == 'x' and arr[2][5] == 'x' and arr[4][9] == 'x') or (arr[0][9] == 'x' and arr[2][5] == 'x' and arr[4][1] == 'x'):
+        print ('You won!')
+        return
+    print ('You lost')
+
+#Takes input from user
 def turn():
     print ('Please put your mark by entering position on the grid as shown in example above.')
-
     x = input()
     if (x == "0" and arr[0][1] == ' '):
         update_grid(0,1)
@@ -58,6 +84,7 @@ def turn():
     else:
         print ('This position is occupied.')
         print_grid()
+
 
 
 hello()
