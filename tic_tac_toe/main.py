@@ -47,5 +47,5 @@ def turn():
 
 
 hello()
-print_grid()
+print_grid_example()
 turn()
