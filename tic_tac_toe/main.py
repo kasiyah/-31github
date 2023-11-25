@@ -1,3 +1,4 @@
+import numpy as np
 def hello():
     print ('Hello, let\'s play Tic Tac Toe!')
 
@@ -7,6 +8,7 @@ arr = np.array([[' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
        [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
        ['-','-','-','|','-','-','-','|','-','-','-'],
        [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ']])
+
 
 #Prints example grid with positions
 def print_grid_example():
@@ -36,12 +38,13 @@ def update_grid(j,k):
 def print_grid():
     for row in arr:
         print(' '.join([str(elem) for elem in row]))
+
 #Checks rows
 def check_row():
     for row in arr:
         if row[1] == 'x' and row[5] == 'x' and row[9] == 'x':
             print ('You won!')
-            return
+            return True
     print ('You lost')
 
 #Checks columns           
@@ -49,44 +52,46 @@ def check_column():
     for col in arr.T:
         if col[0] == 'x' and col[2] == 'x' and col[4] == 'x':
             print ('You won!')
-            return
+            return True
     print ('You lost')
 
 #Checks diagonally
 def check_diagonally():
     if (arr[0][1] == 'x' and arr[2][5] == 'x' and arr[4][9] == 'x') or (arr[0][9] == 'x' and arr[2][5] == 'x' and arr[4][1] == 'x'):
         print ('You won!')
-        return
+        return True
     print ('You lost')
 
 #Takes input from user
 def turn():
     print ('Please put your mark by entering position on the grid as shown in example above.')
-    x = input()
-    if (x == "0" and arr[0][1] == ' '):
-        update_grid(0,1)
-    elif (x == "1"):
-        update_grid(0,5)
-    elif (x == 2):
-        update_grid(0,9)
-    elif (x == 3):
-        update_grid(2,1)
-    elif (x == 4):
-        update_grid(2,5)
-    elif (x == 5):
-        update_grid(2,9)
-    elif (x == 6):
-        update_grid(4,1)
-    elif (x == 7):
-        update_grid(4,5)
-    elif (x == 8):
-        update_grid(4,9)
-    else:
-        print ('This position is occupied.')
-        print_grid()
+    while (check_row() == True):
+        x = input()
+        if (x == 0 and arr[0][1] == ' '):
+            update_grid(0,1)
+        elif (x == 1 and arr[0][5] == ' '):
+            update_grid(0,5)
+        elif (x == 2 and arr[0][9] == ' '):
+            update_grid(0,9)
+        elif (x == 3 and arr[2][1] == ' '):
+            update_grid(2,1)
+        elif (x == 4 and arr[2][5] == ' '):
+            update_grid(2,5)
+        elif (x == 5 and arr[2][9] == ' '):
+            update_grid(2,9)
+        elif (x == 6 and arr[4][1] == ' '):
+            update_grid(4,1)
+        elif (x == 7 and arr[4][5] == ' '):
+            update_grid(4,5)
+        elif (x == 8 and arr[4][9] == ' '):
+            update_grid(4,9)
+        else:
+            print ('This position is occupied.')
+            print_grid()
 
 
 
 hello()
 print_grid_example()
 turn()
+print_grid()
