@@ -1,4 +1,5 @@
 import numpy as np
+import random 
 def hello():
     print ('Hello, let\'s play Tic Tac Toe!')
 
@@ -30,9 +31,12 @@ def print_grid_example():
         print(' '.join([str(elem) for elem in row]))
 
 #Updates grid
-def update_grid(j,k):
-    for row in arr:
+def update_grid(j,k,type):
+    if(type == 'player'):
         arr[j][k] = 'x'
+    else:
+        arr[j][k] = '0'
+    print_grid()
 
 #Prints grid       
 def print_grid():
@@ -42,56 +46,70 @@ def print_grid():
 #Checks rows
 def check_row():
     for row in arr:
-        if row[1] == 'x' and row[5] == 'x' and row[9] == 'x':
+        if (row[1] == 'x')*(row[5] == 'x')*(row[9] == 'x'):
             print ('You won!')
             return True
-    print ('You lost')
+        elif (row[1] == '0')*(row[5] == '0')*(row[9] == '0'):
+            print ('You lost!')
+            return True
 
 #Checks columns           
 def check_column():
     for col in arr.T:
-        if col[0] == 'x' and col[2] == 'x' and col[4] == 'x':
+        if (col[0] == 'x')*(col[2] == 'x')*(col[4] == 'x'):
             print ('You won!')
             return True
-    print ('You lost')
+        elif (col[0] == '0')*(col[2] == '0')*(col[4] == '0'):
+            print ('You lost!')
+            return True
 
 #Checks diagonally
 def check_diagonally():
-    if (arr[0][1] == 'x' and arr[2][5] == 'x' and arr[4][9] == 'x') or (arr[0][9] == 'x' and arr[2][5] == 'x' and arr[4][1] == 'x'):
+    if (arr[0][1] == 'x')*(arr[2][5] == 'x')*(arr[4][9] == 'x')+(arr[0][9] == 'x')*(arr[2][5] == 'x')*(arr[4][1] == 'x'):
         print ('You won!')
         return True
-    print ('You lost')
+    elif (arr[0][1] == '0')*(arr[2][5] == '0')*(arr[4][9] == '0')+(arr[0][9] == '0')*(arr[2][5] == '0')*(arr[4][1] == '0'):
+        print ('You lost!')
+        return True
 
 #Takes input from user
 def turn():
+    list = []
     print ('Please put your mark by entering position on the grid as shown in example above.')
-    while (check_row() == True):
-        x = input()
+    while (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
+        user = input('Please enter position value: ')
+        position(user,'player')
+        computer = random.randint(0,8)
+        print('Computer position vlue: ' + str(computer))
+        position(computer,'comp')
+
+
+def position(x,type):
+    if (x != 'x')*(x != '0'):
         if (x == 0 and arr[0][1] == ' '):
-            update_grid(0,1)
+            update_grid(0,1,type)
         elif (x == 1 and arr[0][5] == ' '):
-            update_grid(0,5)
+            update_grid(0,5,type)
         elif (x == 2 and arr[0][9] == ' '):
-            update_grid(0,9)
+            update_grid(0,9,type)
         elif (x == 3 and arr[2][1] == ' '):
-            update_grid(2,1)
+            update_grid(2,1,type)
         elif (x == 4 and arr[2][5] == ' '):
-            update_grid(2,5)
+            update_grid(2,5,type)
         elif (x == 5 and arr[2][9] == ' '):
-            update_grid(2,9)
+            update_grid(2,9,type)
         elif (x == 6 and arr[4][1] == ' '):
-            update_grid(4,1)
+            update_grid(4,1,type)
         elif (x == 7 and arr[4][5] == ' '):
-            update_grid(4,5)
+            update_grid(4,5,type)
         elif (x == 8 and arr[4][9] == ' '):
-            update_grid(4,9)
-        else:
-            print ('This position is occupied.')
-            print_grid()
+            update_grid(4,9,type)
+    else:
+        print('Position is taken. Please enter different')
 
 
 
 hello()
 print_grid_example()
 turn()
-print_grid()
+
