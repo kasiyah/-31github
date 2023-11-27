@@ -1,5 +1,6 @@
 import numpy as np
 import random 
+import time
 def hello():
     print ('Hello, let\'s play Tic Tac Toe!')
 
@@ -18,15 +19,15 @@ def print_grid_example():
        [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
        ['-','-','-','|','-','-','-','|','-','-','-'],
        [' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ']]
-    arr1[0][1] = 0
-    arr1[0][5] = 1
-    arr1[0][9] = 2
-    arr1[2][1] = 3
-    arr1[2][5] = 4
-    arr1[2][9] = 5
-    arr1[4][1] = 6
-    arr1[4][5] = 7
-    arr1[4][9] = 8
+    arr1[0][1] = 1
+    arr1[0][5] = 2
+    arr1[0][9] = 3
+    arr1[2][1] = 4
+    arr1[2][5] = 5
+    arr1[2][9] = 6
+    arr1[4][1] = 7
+    arr1[4][5] = 8
+    arr1[4][9] = 9
     for row in arr1:
         print(' '.join([str(elem) for elem in row]))
 
@@ -75,34 +76,36 @@ def check_diagonally():
 #Takes input from user
 def turn():
     list = []
-    print ('Please put your mark by entering position on the grid as shown in example above.')
+    print ('\nPlease put your mark by entering position on the grid as shown in example above.')
     while (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
-        user = input('Please enter position value: ')
-        position(user,'player')
-        computer = random.randint(0,8)
-        print('Computer position vlue: ' + str(computer))
-        position(computer,'comp')
+        if (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
+            user = input('Please enter your position: ')
+            position(user,'player')
+        if (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
+            computer = random.randint(1,9)
+            print('\nComputer position is: ' + str(computer))
+            position(computer,'comp')
 
 
 def position(x,type):
     if (x != 'x')*(x != '0'):
-        if (x == 0 and arr[0][1] == ' '):
+        if (x == 1 and arr[0][1] == ' '):
             update_grid(0,1,type)
-        elif (x == 1 and arr[0][5] == ' '):
+        elif (x == 2 and arr[0][5] == ' '):
             update_grid(0,5,type)
-        elif (x == 2 and arr[0][9] == ' '):
+        elif (x == 3 and arr[0][9] == ' '):
             update_grid(0,9,type)
-        elif (x == 3 and arr[2][1] == ' '):
+        elif (x == 4 and arr[2][1] == ' '):
             update_grid(2,1,type)
-        elif (x == 4 and arr[2][5] == ' '):
+        elif (x == 5 and arr[2][5] == ' '):
             update_grid(2,5,type)
-        elif (x == 5 and arr[2][9] == ' '):
+        elif (x == 6 and arr[2][9] == ' '):
             update_grid(2,9,type)
-        elif (x == 6 and arr[4][1] == ' '):
+        elif (x == 7 and arr[4][1] == ' '):
             update_grid(4,1,type)
-        elif (x == 7 and arr[4][5] == ' '):
+        elif (x == 8 and arr[4][5] == ' '):
             update_grid(4,5,type)
-        elif (x == 8 and arr[4][9] == ' '):
+        elif (x == 9 and arr[4][9] == ' '):
             update_grid(4,9,type)
     else:
         print('Position is taken. Please enter different')
