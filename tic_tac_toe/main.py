@@ -1,8 +1,9 @@
 import numpy as np
 import random 
 import time
-def hello():
-    print ('Hello, let\'s play Tic Tac Toe!')
+
+#List to hold user anr and computer position
+input_list = []
 
 #Initializes array grid
 arr = np.array([[' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
@@ -28,20 +29,19 @@ def print_grid_example():
     arr1[4][1] = 7
     arr1[4][5] = 8
     arr1[4][9] = 9
-    for row in arr1:
-        print(' '.join([str(elem) for elem in row]))
+    print_grid(arr1)
 
-#Updates grid
+#Updates grid, takes coordinates and input type as parameters
 def update_grid(j,k,type):
     if(type == 'player'):
         arr[j][k] = 'x'
     else:
         arr[j][k] = '0'
-    print_grid()
+    print_grid(arr)
 
 #Prints grid       
-def print_grid():
-    for row in arr:
+def print_grid(grid):
+    for row in grid:
         print(' '.join([str(elem) for elem in row]))
 
 #Checks rows
@@ -73,10 +73,10 @@ def check_diagonally():
         print ('You lost!')
         return True
 
-input_list = []
+#Validates user position for duplicates
 def user_input():
     while True:
-        user = input('Please enter your position: ')
+        user = input('\nPlease enter your position: ')
         if user not in input_list:
             position(user,'player')
             input_list.append(user)
@@ -86,9 +86,10 @@ def user_input():
     return user
 
 
-
+#Validates random position for duplicates
 def computer_input():
     while True:
+        time.sleep(0.5)
         computer = random.randint(1,9)
         if computer not in input_list:
             print('\nComputer position is: ' + str(computer))
@@ -97,16 +98,16 @@ def computer_input():
             break
     return computer
 
-#Takes input from user
+#Takes turns between user and computer
 def turn():
     print ('\nPlease put your mark by entering position on the grid as shown in example above.')
     while (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
         user_input()
-        if (check_row() == True)*(check_diagonally() == True)*(check_column() == True):
+        if (check_row() == True)*(check_diagonally() == True)*(check_column() == True) or (len(input_list) == 9):
             break
         computer_input()
 
-
+#Finds position coordinates on grid
 def position(x,type):
     if (x != 'x')*(x != '0'):
         if (x == 1 and arr[0][1] == ' '):
@@ -132,7 +133,7 @@ def position(x,type):
 
 
 
-hello()
+print ('Hello, let\'s play Tic Tac Toe!')
 print_grid_example()
 turn()
 
