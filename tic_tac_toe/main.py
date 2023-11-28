@@ -73,18 +73,38 @@ def check_diagonally():
         print ('You lost!')
         return True
 
-#Takes input from user
-def turn():
-    list = []
-    print ('\nPlease put your mark by entering position on the grid as shown in example above.')
-    while (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
-        if (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
-            user = input('Please enter your position: ')
+input_list = []
+def user_input():
+    while True:
+        user = input('Please enter your position: ')
+        if user not in input_list:
             position(user,'player')
-        if (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
-            computer = random.randint(1,9)
+            input_list.append(user)
+            break
+        else:
+            print('This position has already been used.')
+    return user
+
+
+
+def computer_input():
+    while True:
+        computer = random.randint(1,9)
+        if computer not in input_list:
             print('\nComputer position is: ' + str(computer))
             position(computer,'comp')
+            input_list.append(computer)
+            break
+    return computer
+
+#Takes input from user
+def turn():
+    print ('\nPlease put your mark by entering position on the grid as shown in example above.')
+    while (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
+        user_input()
+        if (check_row() == True)*(check_diagonally() == True)*(check_column() == True):
+            break
+        computer_input()
 
 
 def position(x,type):
