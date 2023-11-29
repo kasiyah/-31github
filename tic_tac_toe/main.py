@@ -81,6 +81,9 @@ def user_input():
             position(user,'player')
             input_list.append(user)
             break
+        elif(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)): 
+            print('Noone won. Game over!1')
+            break 
         else:
             print('This position has already been used.')
     return user
@@ -96,15 +99,21 @@ def computer_input():
             position(computer,'comp')
             input_list.append(computer)
             break
+        elif(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)): 
+            print('Noone won. Game over!2')
+            break 
     return computer
 
 #Takes turns between user and computer
 def turn():
     print ('\nPlease put your mark by entering position on the grid as shown in example above.')
-    while (check_row() != True)*(check_diagonally() != True)*(check_column() != True):
-        user_input()
-        if (check_row() == True)*(check_diagonally() == True)*(check_column() == True) or (len(input_list) == 9):
+    while True:
+        if (check_row() == True)+(check_diagonally() == True)+(check_column() == True):
             break
+        elif(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)): 
+            print('Noone won. Game over!3')
+            break 
+        user_input()
         computer_input()
 
 #Finds position coordinates on grid
