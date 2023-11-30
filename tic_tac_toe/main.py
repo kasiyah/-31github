@@ -49,9 +49,11 @@ def check_row():
     for row in arr:
         if (row[1] == 'x')*(row[5] == 'x')*(row[9] == 'x'):
             print ('You won!')
+            exit()
             return True
         elif (row[1] == '0')*(row[5] == '0')*(row[9] == '0'):
             print ('You lost!')
+            exit()
             return True
 
 #Checks columns           
@@ -59,30 +61,48 @@ def check_column():
     for col in arr.T:
         if (col[0] == 'x')*(col[2] == 'x')*(col[4] == 'x'):
             print ('You won!')
+            exit()
             return True
         elif (col[0] == '0')*(col[2] == '0')*(col[4] == '0'):
             print ('You lost!')
+            exit()
             return True
 
 #Checks diagonally
 def check_diagonally():
     if (arr[0][1] == 'x')*(arr[2][5] == 'x')*(arr[4][9] == 'x')+(arr[0][9] == 'x')*(arr[2][5] == 'x')*(arr[4][1] == 'x'):
         print ('You won!')
+        exit()
         return True
     elif (arr[0][1] == '0')*(arr[2][5] == '0')*(arr[4][9] == '0')+(arr[0][9] == '0')*(arr[2][5] == '0')*(arr[4][1] == '0'):
         print ('You lost!')
+        exit()
         return True
+
+#Checks draw
+def check_draw():
+    if(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)):
+        print('Noone won. Game over!')
+        exit()
+        return True
+
 
 #Validates user position for duplicates
 def user_input():
     while True:
         user = input('\nPlease enter your position: ')
+        # while True:
+        #     if (user == ' '):
+        #         print('Position cannot be blank!')
+        #     elif (str(user).isdigit() == False):
+        #         print('Position can only be integer!')
+        #     elif (user > 9)+(user < 0):
+        #         print('Podition can only be integer 0-9!')
         if user not in input_list:
             position(user,'player')
             input_list.append(user)
             break
-        elif(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)): 
-            print('Noone won. Game over!1')
+        elif(check_draw()): 
             break 
         else:
             print('This position has already been used.')
@@ -99,19 +119,17 @@ def computer_input():
             position(computer,'comp')
             input_list.append(computer)
             break
-        elif(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)): 
-            print('Noone won. Game over!2')
+        elif(check_draw()): 
             break 
     return computer
 
 #Takes turns between user and computer
 def turn():
-    print ('\nPlease put your mark by entering position on the grid as shown in example above.')
+    print ('\nPlease choose your position on the grid as shown in example above.')
     while True:
         if (check_row() == True)+(check_diagonally() == True)+(check_column() == True):
             break
-        elif(len(input_list) == 9)*((check_row() != True)+(check_diagonally() != True)+(check_column() != True)): 
-            print('Noone won. Game over!3')
+        elif(check_draw()): 
             break 
         user_input()
         computer_input()
