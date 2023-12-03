@@ -103,12 +103,14 @@ Non Dominant Terms
 Two loops:
 one loop is O(n^2) - completes 100 operations
 the following one is O(n) - completes 10 operation
-Total time complexity is O(n^2 + n) ---> In terms of Big O we can simplify this by removing non-dominant terms (O(n^2)- dominant term, term with higher power, O(n) - non-dominant term, term with lower power) ---> O(n^2)
+Total time complexity is O(n^2 + n) ---> In terms of Big O we can simplify this by removing non-dominant terms (O(n^2)- dominant term, 
+term with higher power, O(n) - non-dominant term, term with lower power) ---> O(n^2)
 
 
 O(log n)
 Divide and Conquer - searching for a number in a sorted array.
-For axample and array of 8 sorted elements, we divide it 3 time until we find the required number. ---> 2^3=8 (Since we are dividing by 2 we are using base two notation 2^3)
+For axample and array of 8 sorted elements, we divide it 3 time until we find the required number. ---> 2^3=8 (Since we are dividing 
+by 2 we are using base two notation 2^3)
 2^3=8 ---> log2_8 = 3
 This complexity is crucial when we work with really big numbers ---> log2_1,048,576=20
 It is very efficient compared to O(n) or O(n^2) - if we increase the number of elements, the number of operations increases slightly.
@@ -117,12 +119,15 @@ Space Complexity
 - is a measure of amount of the working storage that an algorithm needs.
 How much memory in the worst case is needed at any point in the algorithm.
 Eg: a function summing up number from input until zero calling itself recursively.
-Recursive methods like this count in the space stack. So every time each call adds a level to the stack and this takes up actual memory. This function takes O(n) space complexity.
+Recursive methods like this count in the space stack. So every time each call adds a level to the stack and this takes up actual memory. 
+This function takes O(n) space complexity.
 
 Different Terms for Input - Add vs Multiply
 Eg: two loops in a sequence passing n, each loop is O(n) time complexity. ---> O(n) + O(n) = O(2n) we can drop constant ---> O(n) 
-If we change parameters and have one loop passing a and another one passing b instead of n ---> O(a) + O(b) = O(a+b) we cannot simplify it anymore. - If your algorithm is in the form "do this, then when you are all done , do that" ---> add runtimes
-If we now have nested loops. Loop b inside loop a --> O(a*b) - If your algorithmm is in the form "do this for each time you do that" ---> multiply runtimes
+If we change parameters and have one loop passing a and another one passing b instead of n ---> O(a) + O(b) = O(a+b) we cannot simplify 
+it anymore. - If your algorithm is in the form "do this, then when you are all done , do that" ---> add runtimes
+If we now have nested loops. Loop b inside loop a --> O(a*b) - If your algorithmm is in the form "do this for each time you do that" --->
+---> multiply runtimes
 
 How to measure the codes using Big O?
 Rule 1 Any assignments statements and if statements that are executed once regardless of the size of the problem O(1)
@@ -130,3 +135,80 @@ Rule 2 A simple "for" loop from 0 to n (with no internal loops) O(n)
 Rule 3 A nested loop of the same type takes quadratic time complexity O(n^2)
 Rule 4 A loop, in which the controlling parameter is divided by two at each step O(log n)
 Rule 5 When dealing with multiple statements, just add them up
+
+
+Arrays - not native DS in Python (list is native to Python)
+- is a DS which can store collection of elements of the same type
+- store elements as contigious blocks of memory without pointers, reducing memory overhead.
+- can only store elements of the same data type
+- each element has a unique index
+
+Types of Arrays
+One Dimensional - linear array
+Multi Dimensional
+2D --> i[row index][column index]
+3D --> i[depth index][row index][column index]
+
+Types of Arrays in Memory
+1D - compiler allocates 9 contiguous cells in memory, all cells next to each other. It can start in any location.
+2D - in memory it is represented as one dimensional array
+3D - in memory it is represented as one dimensional array
+
+Common Operations that can be performed on Arrays
+
+Array Module 
+- more memory efficient than list for storing the large types of the same data type.
+- supports only basic data types
+- homogeneous (only same data types)
+- import array
+my_array = array.array('i')  --> i - denotes type of element integers
+
+Numpy Module
+- advantage: provides a feature rich and high performance array object, supports wide range of numerical operations and functions
+- disadvantage: not part of Python standard library, you have to install additional library to be able to use it.
+- import numpy
+np_array = np.array([], dtype=int)
+
+Time Complexity
+- creating empty array ---> involves minimal operations such as initializing array metadata and allocating minimal 
+amoount of memory for the array elements --> Time Complexity: O(1), Empty array has no elements, memory used for 
+array metadata is constant and does not depend on the number of elements ---> Space Complexity: O(1)
+- creating array with elements ---> involves copying elements from the input iteratively ---> Time Complexity: O(1), 
+the memory allocation for the array elements depends on the number and the data type of the elements. As the number 
+of elements increases, the memory needed to store those elements also increases proportionally. ---> Space Complexity: O(1)
+
+Insertion to Array
+my_array.insert(index, value) - this will insert needed value and shift indexes for other elements if needed.
+Time complexity: depends on the number of elements that need to be shifted ---> O(N)
+Space Complexity: when we are inserting into the array we need only one space for that element ---> O(1)
+
+Array Traversal 
+- visiting all cells of the array. Eg: printing elements one by one, or updating given element.
+Time Complexity: we use for loop to traverse array --> O(n)
+Space Complexity: we don't need extra location to perform traverse operation --> O(1)
+
+Access Array Element 
+- print value of cell number
+arrayName[index] = "value"
+
+def accessElement(array, index): 
+    if index >= len(array): ---------------------------------------> O(1)
+          print('There is no element with such index') ------------> O(1)
+    else:
+          print(array[index]) -------------------------------------> O(1)
+
+Time Complexity:  because we just access element at certain index --> O(1)
+Space Complexity: we do not need extra space for this operation --> O(n)
+
+Searching for and Element in Array
+Linear Search 
+- iterate through elements of the array one by one, comparing each element with the target value. If the target value is found, the search is successful and you can go ahead and return the index of the target value. If the target value is not found after iterating the all elements, the search is unsuccessful and you can return an indication that the value was not found.
+
+def linearSearch(arr, target):
+    for i in range(len(arr)): --------------------------------------> O(n)
+        if arr[i] == target: ---------------------------------------> O(1)
+            return i  ----------------------------------------------> O(1)
+        return -1     ----------------------------------------------> O(1)
+
+Time Complexity:  total time complexity --> O(1)
+Space Complexity: we do not need extra space for this operation --> O(1)
