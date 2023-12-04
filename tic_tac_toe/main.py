@@ -88,9 +88,14 @@ def check_draw():
 
 #Check corner
 def check_corner():
-    if(arr[0][1] == 'x')+(arr[0][9] == 'x')+(arr[4][1] == 'x')+(arr[4][9] == 'x'):
-        print('Edge')
-        return True  
+    if (arr[0][1] == 'x'):
+        return 1
+    elif(arr[0][9] == 'x'):
+        return 3
+    elif(arr[4][1] == 'x'):
+        return 7
+    elif(arr[4][9] == 'x'):
+        return 9  
 
 #Validates user position for duplicates
 def user_input():
@@ -120,7 +125,8 @@ def computer_input():
     while True:
         time.sleep(0.5)
         if(check_corner()):
-             computer = 5
+            print(check_corner()) 
+            computer = 5
         # elif(arr[2][5] == 'x'):
         #     computer = 1
         #computer = random.randint(1,9)
