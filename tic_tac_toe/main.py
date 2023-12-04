@@ -4,6 +4,8 @@ import time
 
 #List to hold user anr and computer position
 input_list = []
+player_list = []
+
 
 #Initializes array grid
 arr = np.array([[' ',' ',' ','|',' ',' ',' ','|',' ',' ',' '],
@@ -97,6 +99,10 @@ def check_corner():
     elif(arr[4][9] == 'x'):
         return 9  
 
+def pos_next():
+    print(input_list)
+    print(player_list)
+
 #Validates user position for duplicates
 def user_input():
     while True:
@@ -111,6 +117,7 @@ def user_input():
         if user not in input_list:
             position(user,'player')
             input_list.append(user)
+            player_list.append(user)
             check_corner()
             break
         elif(check_draw()): 
@@ -126,6 +133,7 @@ def computer_input():
         time.sleep(0.5)
         if(check_corner()):
             print(check_corner()) 
+            pos_next()
             computer = 5
         # elif(arr[2][5] == 'x'):
         #     computer = 1
