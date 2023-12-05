@@ -98,6 +98,41 @@ def check_corner():
         return 7
     elif(arr[4][9] == 'x'):
         return 9  
+    
+#Check edge
+def check_edge():
+    if (arr[0][5] == 'x'):
+        return 2
+    elif(arr[2][1] == 'x'):
+        return 4
+    elif(arr[2][9] == 'x'):
+        return 6
+    elif(arr[4][5] == 'x'):
+        return 8  
+    
+#check availability
+def check_avail(x):
+    if (x != 'x')*(x != '0'):
+        if (x == 1 and arr[0][1] == ' '):
+            return True
+        elif (x == 2 and arr[0][5] == ' '):
+            return True
+        elif (x == 3 and arr[0][9] == ' '):
+            return True
+        elif (x == 4 and arr[2][1] == ' '):
+            return True
+        elif (x == 5 and arr[2][5] == ' '):
+            return True
+        elif (x == 6 and arr[2][9] == ' '):
+            return True
+        elif (x == 7 and arr[4][1] == ' '):
+            return True
+        elif (x == 8 and arr[4][5] == ' '):
+            return True
+        elif (x == 9 and arr[4][9] == ' '):
+            return True
+    else:
+        print('Position is taken. Please enter different')
 
 def pos_next():
     print(input_list)
@@ -131,13 +166,16 @@ def user_input():
 def computer_input():
     while True:
         time.sleep(0.5)
-        if(check_corner()):
+        if check_corner() == True and check_avail('5') == True:
             print(check_corner()) 
             pos_next()
             computer = 5
-        # elif(arr[2][5] == 'x'):
-        #     computer = 1
-        #computer = random.randint(1,9)
+            #break
+        elif(check_edge()):
+            list = ['1','3','7','9']
+            computer = random.choice(list)
+        else:
+            computer = random.randint(1,9)
         if computer not in input_list:
             print('\nComputer position is: ' + str(computer))
             position(computer,'comp')
