@@ -166,16 +166,16 @@ def user_input():
 def computer_input():
     while True:
         time.sleep(0.5)
-        if check_corner() == True and check_avail('5') == True:
-            print(check_corner()) 
-            pos_next()
-            computer = 5
-            #break
-        elif(check_edge()):
-            list = ['1','3','7','9']
-            computer = random.choice(list)
-        else:
-            computer = random.randint(1,9)
+        # if check_corner() == True and check_avail('5') == True:
+        #     print(check_corner()) 
+        #     pos_next()
+        #     computer = 5
+        #     #break
+        # elif(check_edge()):
+        #     list = ['1','3','7','9']
+        #     computer = random.choice(list)
+        # else:
+        computer = random.randint(1,9)
         if computer not in input_list:
             print('\nComputer position is: ' + str(computer))
             position(computer,'comp')
