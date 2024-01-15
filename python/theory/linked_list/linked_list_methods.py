@@ -75,7 +75,7 @@ class LinkedList:
         # Space Complexity: O(1) - only a single node is created during this operation regardless 
         # of the size of the linked list since additional space is not required
 
-    # self.headTraversal of Singly Linked List
+    # Traversal method of Singly Linked List
     def traverse(self):
         current = self.head          #----------------- O(1) 
         # same as while current is not None:
@@ -83,7 +83,21 @@ class LinkedList:
             print(current.value)     #----------------- O(1) 
             current = current.next   #----------------- O(1) 
         # Time Complexity: O(n)
-        # Space Complexity: O(1)   
+        # Space Complexity: O(1) 
+
+    # Search Method in Singly Linked List
+    def search(self, target):
+        current = self.head               #----------------- O(1) 
+        index = 0                         #----------------- O(1) 
+        # same as while current is not None:
+        while current:                    #----------------- O(n) 
+            if current.value == target:   #----------------- O(1) 
+                return index              #----------------- O(1) 
+            current = current.next        #----------------- O(1) 
+            index += 1                    #----------------- O(1) 
+        return -1                         #----------------- O(1) 
+        # Time Complexity: O(n)
+        # Space Complexity: O(1)
 
 new_linked_list = LinkedList()
 new_linked_list.insert(0,50)
@@ -94,6 +108,7 @@ new_linked_list.prepend(40)
 new_linked_list.insert(-1,30)
 print(new_linked_list)
 new_linked_list.traverse()
+print(new_linked_list.search(30))
 
 
 
