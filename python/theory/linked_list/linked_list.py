@@ -130,3 +130,18 @@
 #     - point last node to the new node
 #     - point tail to new node
 
+# Time and Space Complexity of Singly Linked List
+Operation         | Time Complexity | Space Complexity
+-------------------------------------------------------
+Create            |  O(1)           |   O(1)
+Append            |  O(1)           |   O(1)
+Prepend           |  O(1)           |   O(1)
+Insert            |  O(n)           |   O(1)
+Search            |  O(n)           |   O(1)
+traverse          |  O(n)           |   O(1)
+Get               |  O(n)           |   O(1)
+Set               |  O(n)           |   O(1)
+Pop First         |  O(1)           |   O(1)
+Pop               |  O(n)           |   O(1)
+Remove            |  O(n)           |   O(1)
+Delete all Nodes  |  O(1)           |   O(1)
