@@ -205,14 +205,3 @@ print(new_linked_list.remove(-1))
 print(new_linked_list.tail.value)
 print(new_linked_list.delete_all())
 print(new_linked_list)
-
-
-
-
-
-
-
-
-
-
-
