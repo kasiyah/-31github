@@ -1,18 +1,17 @@
-Tuples
+Tuples - a sequence of values, much like a list.
 - values can be any type
-- indexes are integers
+- indexed by integers
 - immutable sequence of Python objects (when we declare a tuple we cannot change it)
-- comparable and hashable, so we can sort list of them and use tuples as key values inPython dictionary.
+- comparable and hashable, so we can sort of list them and use tuples as key values in Python dictionary.
 
 An object is set to be hashable if it has a value that remains the same during its lifetime.
 
 Syntax of creating tuples:
 t = 'a', 'b', 'c', 'd', 'e'
-t = ('a', 'b', 'c', 'd', 'e')
+t = ('a', 'b', 'c', 'd', 'e') # to helpp us identify tuples when we look at python code
 
 
 How to create a Tuple?
-
 new_tuple = ('a', 'b', 'c', 'd', 'e')
 print(new_tuple)
  
