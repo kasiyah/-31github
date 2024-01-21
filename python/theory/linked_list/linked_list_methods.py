@@ -179,7 +179,7 @@ class LinkedList:
     # Delete all nodes Method
     def delete_all(self):
         self.head = None
-        self.head = None
+        self.tail = None
         self.length = 0 
         # Time Complexity: O(1)
         # Space Complexity: O(1)
