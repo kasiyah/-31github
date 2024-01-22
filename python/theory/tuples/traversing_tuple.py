@@ -122,3 +122,20 @@ print(tuple1)
 - Since tuples are immutable, iterating through a tuple is faster than with list ---> performance boost.
 - Tuples that contain immutable elements can be used as a key for a dictionary, while with list this is not possible.
 - If you have the data that does not change, implementing it as a tuple will guarantee that it remains write-protected, so no one can change it.
+
+
+# Time and Space Complexity of Circular Singly Linked List
+Operation         | Time Complexity | Space Complexity
+-------------------------------------------------------
+Create            |  O(1)           |   O(1)
+Append            |  O(1)           |   O(1)
+Prepend           |  O(1)           |   O(1)
+Insert            |  O(n)           |   O(1)
+Search            |  O(n)           |   O(1)
+traverse          |  O(n)           |   O(1)
+Get               |  O(n)           |   O(1)
+Set               |  O(n)           |   O(1)
+Pop First         |  O(1)           |   O(1)
+Pop               |  O(n)           |   O(1)
+Remove            |  O(n)           |   O(1)
+Delete all Nodes  |  O(1)           |   O(1)
