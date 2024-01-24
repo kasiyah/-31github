@@ -38,14 +38,14 @@ eng_sp = dict(one='uno', two='dos', three='tres')
 print(eng_sp)
  
 # using curvy brackets
-# we need to specify data type of key string here and use : 
-eng_sp2 = {'one':'uno', 'two':'dos', 'three':'tres')
+# we need to specify data type of key as string here and use : 
+eng_sp2 = {'one':'uno', 'two':'dos', 'three':'tres'}
 print(eng_sp2)
 Time Complexity: O(n) 
 - because each key and value pair need to be inserted in the dictionary ant it will take some time
 Space Complexity: O(n)
 
-# using dict() constructo and list of tuples
+# using dict() constructor and list of tuples
 eng_sp_list = [('one','uno'), ('two','dos'), ('three','tres')]
 eng_sp3 = dict(eng_sp_list)
 print(eng_sp3)
@@ -55,9 +55,39 @@ Dictionary in Memory
 
 A hash table is a way of doing key-value lookups.
 - You store the values in an array, and then use a hash function to find he index of the array cell that corresponds to your key-value pair.
-- a Hash function maps a key to hash value nd then index of the array. 
+- a Hash function maps a key to hash value and then index of the array. 
 
 Elements of Dictionary: 
 - key
 - value
 - hash fuction - minimizes the number of collusions (when different keys have )
+
+
+
+# Dictionary vs List
+
+ --------------------------------------------------------------------------------------------
+|                   Dictionary                  |               List                        |
+|-------------------------------------------------------------------------------------------|
+|                   Unordered                   |               Ordered                     |
+|               Access via keys                 |           Access via index                |
+|           Collection of key values            |       Collection of elements              |
+|   Prefferred when you have unique key values  |   Prefferred when you have ordered data   |
+|           No duplicate members                |       Allow duplicate members             |
+ --------------------------------------------------------------------------------------------
+
+
+#################################################
+# Time and Space Complexity in Python Dictionary
+
+ ------------------------------------------------------------------------------------
+|                Operation           |   Time Complexity    |    Space Complexity    |
+| Creating a Dictionary              |    O(len(dict))      |         O(n)           |
+| Inserting a Value in a Dictionary  |     O(1)/O(n)        |         O(1)           |
+| Traversion a given Dictionary      |        O(n)          |         O(1)           |
+| Accessing a given cell             |        O(1)          |         O(1)           |
+| Searching a given value*           |        O(n)          |         O(1)           |
+| Deleting a given value             |        O(1)          |         O(1)           |
+ ------------------------------------------------------------------------------------
+
+* if using in operator - Time Complexity is O(1) since the key is known
