@@ -36,7 +36,7 @@ class CircularDoublyLinkedList:
     # SC: O(1)
 
 #####################################
-# Append Method CDLL
+# Insert Method CDLL
 #####################################
     def insertCDLL(self, value, location):
         if not self.head:
@@ -70,13 +70,103 @@ class CircularDoublyLinkedList:
         # TC: O(n)
         # SC: O(1)
                 
-    
+#####################################
+# Traverse Method CDLL
+#####################################
+    def traverseCDLL(self):  
+        if self.head is None:
+            print("There is not any nodes for traversal")
+        else:
+            temp_node = self.head
+            while temp_node:                    #---------------> O(n)
+                print(temp_node.value)
+                if temp_node == self.tail:
+                    break
+                temp_node = temp_node.next 
+        # TC: O(n)
+        # SC: O(1)
 
+#####################################
+# Reverse Traverse Method CDLL
+#####################################
+    def reverseTraverseCDLL(self):  
+        if self.head is None:
+            print("There is not any nodes for reverse traversal")
+        else:
+            temp_node = self.tail
+            while temp_node:                    #---------------> O(n)
+                print(temp_node.value)
+                if temp_node == self.head:
+                    break
+                temp_node = temp_node.prev 
+        # TC: O(n)
+        # SC: O(1)
+
+#####################################
+# Search Method CDLL
+#####################################
+    def searchCDLL(self, value):  
+        if self.head is None:
+            print("There is not any nodes in CDLL")
+        else:
+            temp_node = self.tail
+            while temp_node:                    #---------------> O(n)
+                if temp_node.value == value:
+                    return temp_node.value
+                if temp_node == self.head:
+                    return "The value does not exist in CDLL"
+                temp_node = temp_node.prev 
+        # TC: O(n)
+        # SC: O(1)
+
+#####################################
+# Delete Node Method CDLL
+#####################################
+    def deleteNode(self,location):  
+        if not self.head:
+            return "The not any node to delete"
+        else:
+            if location == 0:
+                if self.head == self.tail:
+                    self.head.prev = None
+                    self.head.next = None
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.head = self.head.next
+                    self.head.prev = self.tail
+                    self.tail.next = self.head
+            elif location == 1:
+                if self.head == self.tail:
+                    self.head.prev = None
+                    self.head.next = None
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.tail = self.tail.prev
+                    self.tail.next = self.head
+                    self.head.prev = self.tail
+            else:
+                temp_node = self.head
+                index = 0
+                while index < location-1:
+                    temp_node = temp_node.next
+                    index += 1
+                temp_node.next = temp_node.next.next
+                temp_node.next.prev = temp_node
+            print("The node has been successfully deleted.") 
+        # TC: O(n)
+        # SC: O(1)
 circularDLL = CircularDoublyLinkedList()
 print(circularDLL.createCDLL(5))
 circularDLL.insertCDLL(0,0)
 circularDLL.insertCDLL(1,1)
 circularDLL.insertCDLL(2,2)
+# print([node.value for node in circularDLL])
+# circularDLL.traverseCDLL()
+# circularDLL.reverseTraverseCDLL()
+# print(circularDLL.searchCDLL(2))
 print([node.value for node in circularDLL])
-
-
+circularDLL.deleteNode(0)
+print([node.value for node in circularDLL])
+print(circularDLL.searchCDLL(2))
