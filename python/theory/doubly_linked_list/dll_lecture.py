@@ -155,29 +155,24 @@ class DoublyLinkeList():
 # #############################################
     def insert(self, index, value):
         if index < 0 or index > self.length:
-            print("Index out of bounds.")
+            print("Index is out of bound!")
             return
         new_node = Node(value)
         if index == 0:
-            # new_node.next = self.head
-            # self.head.prev = new_node
-            # self.head = new_node
-            self.prepend(value)            #--------------------> O(1)
-            return
+            self.prepend(value)
+            return 
         elif index == self.length:
-            # self.tail.next = new_node
-            # new_node.prev = self.tail
-            # self.tail = new_node
-            self.append(value)              #--------------------> O(1)
+            self.append(value)
             return
         else:
-            temp_node = self.get(index-1)   #--------------------> O(n)
+            temp_node = self.get(index-1)
             new_node.next = temp_node.next
             new_node.prev = temp_node
             temp_node.next.prev = new_node
             temp_node.next = new_node
-        self.length += 1  
-    # TC: O(n) - since get method takes O(n)
+        self.length += 1
+        return new_node
+    # TC: O(n)
     # SC: O(1)
         
 # #############################################
@@ -195,7 +190,7 @@ class DoublyLinkeList():
             self.head.prev = None
             popped_node.next = None
         self.length -= 1
-        return popped_node  
+        return popped_node
     # TC: O(1)
     # SC: O(1)
 
@@ -214,7 +209,7 @@ class DoublyLinkeList():
             self.tail.next = None
             popped_node.prev = None
         self.length -= 1
-        return popped_node  
+        return popped_node 
     # TC: O(1)
     # SC: O(1)
 
@@ -223,58 +218,31 @@ class DoublyLinkeList():
 # #############################################
     def remove(self, index):
         if index < 0 or index >= self.length:
-            return None
+            print("Index is out of bound!")
+            return
+        popped_node = self.get(index)
         if index == 0:
-            return self.pop_first()
-        if index == self.length-1:
-            return self.pop()
-        popped_node = self.get(index)   #--------------------> O(n)
-        popped_node.prev.next = popped_node.next
-        popped_node.next.prev = popped_node.prev
-        popped_node.next = None
-        popped_node.prev = None
+            self.pop_first()
+        elif index == self.length-1:
+            self.pop()
+        else:
+            popped_node.prev.next = popped_node.next
+            popped_node.next.prev = popped_node.prev
+            popped_node.next = None
+            popped_node.prev = None
         self.length -= 1
-        return popped_node  
+        return popped_node
     # TC: O(n)
     # SC: O(1)
 
-# new_node = Node(10)
-# print(new_node)
+
 doublyLinkedList = DoublyLinkeList()
-print(doublyLinkedList)
 doublyLinkedList.append(20)
 doublyLinkedList.append(30)
-doublyLinkedList.prepend(10)
-# doublyLinkedList.traverse()
-# doublyLinkedList.reverse_traverse()
-# print(doublyLinkedList)
-# print(doublyLinkedList.search(200))
-# print(doublyLinkedList.get(-1))
-# print(doublyLinkedList)
-# print(doublyLinkedList.set(1,40))
-# print(doublyLinkedList)
-# print(doublyLinkedList.insert(3,20))
-# print(doublyLinkedList)
-# print(doublyLinkedList.pop_first())
-# print(doublyLinkedList)
-# print(doublyLinkedList.pop())
+doublyLinkedList.append(10)
+doublyLinkedList.append(60)
+doublyLinkedList.append(40)
+doublyLinkedList.append(50)
 print(doublyLinkedList)
-print(doublyLinkedList.remove(1))
+print(doublyLinkedList.remove(6))
 print(doublyLinkedList)
-
-
-# # Time and Space Complexity of Doubly Linked List
-# Operation         | Time Complexity | Space Complexity
-# -------------------------------------------------------
-# Create            |  O(1)           |   O(1)
-# Append            |  O(1)           |   O(1)
-# Prepend           |  O(1)           |   O(1)
-# Insert            |  O(n)           |   O(1)
-# Search            |  O(n)           |   O(1)
-# traverse          |  O(n)           |   O(1)
-# Get               |  O(n)           |   O(1)
-# Set               |  O(n)           |   O(1)
-# Pop First         |  O(1)           |   O(1)
-# Pop               |  O(1)           |   O(1)
-# Remove            |  O(n)           |   O(1)
-# Delete all Nodes  |  O(1)           |   O(1)
