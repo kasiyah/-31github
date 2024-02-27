@@ -33,9 +33,12 @@ class Stack:
         self.list = []         #-----------> O(1)
 
     def __str__(self):
-        values = reversed(self.list)
-        values = [str(x) for x in values]
-        return '\n'.join(values)
+        if self.list == None:
+            return "Stack does not exist"
+        # values = reversed(self.list)
+        # values = [str(x) for x in values]
+        # return '\n'.join(values)
+        return '\n'.join(map(str, self.list[::-1]))
     # TC: O(1)
     # SC: O(1)
     
@@ -76,13 +79,22 @@ class Stack:
 
 
 ################################
-# Pop Method
+# Peek Method
 ################################
     def peek(self):
         if self.isEMpty():
             return "There is not any element in the stack"
         else:
             return self.list[len(self.list)-1]
+    # TC: O(1)
+    # SC: O(1) 
+
+################################
+# Delete Stack Method
+################################
+    def delete(self):
+        self.list = None
+        return self.list
     # TC: O(1)
     # SC: O(1) 
 
@@ -97,5 +109,8 @@ customStack.push(3)
 #print(customStack)
 # print(customStack.pop())
 # print(customStack)
-print(customStack.peek())
+#print(customStack.peek())
+print(customStack)
+customStack.delete()
+print(customStack.isEMpty())
 print(customStack)
