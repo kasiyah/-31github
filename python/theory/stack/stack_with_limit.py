@@ -66,7 +66,7 @@ customStack.delete()
 print(customStack)
 
 # Time and Space Complexity of Stack operations with list
-# Operation         | Time Complexity | Space Complexity
+# Operation            | Time Complexity | Space Complexity
 # -------------------------------------------------------
 # Create Stack         |  O(1)           |   O(1)
 # Push                 |  O(1)/O(n^2)    |   O(1)
