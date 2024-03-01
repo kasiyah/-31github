@@ -86,3 +86,14 @@ print(customStack)
 # Peek                 |  O(1)           |   O(1)
 # isEmpty              |  O(1)           |   O(1)
 # Delete Entire Stack  |  O(1)           |   O(1)
+
+
+
+# When to use / avoid Stack
+
+# USE:
+# - LIFO Functionaity
+# - The chance of data corruption is minimum
+
+# AVOID: 
+# - Random access is not possible
