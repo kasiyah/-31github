@@ -4,7 +4,7 @@
 # - data structure that stores items in a Last in/First Out manner
 #   - pile of plates, pile of books, etc
 # - whenever we need functionality in our app that utilizes the last coming data first
-#   - back button i nthe browser
+#   - back button in the browser
 
 ###############################
 # Stack Operations
