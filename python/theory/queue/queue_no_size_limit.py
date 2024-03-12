@@ -17,7 +17,7 @@ class Queue:
     def enqueue(self, value):
         self.items.append(value)
         return "The element is inserted at the end of Queue"
-        #T C: Amortised TC, depending on the size of the list TC can go up to O(n) or O(n^2)
+        # TC: Amortised TC, depending on the size of the list TC can go up to O(n) or O(n^2)
         # SC: O(1)
 
     def dequeue(self):
