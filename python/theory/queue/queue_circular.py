@@ -94,10 +94,11 @@ print(customQueue)
 # Time and Space Complexity of Circular Queue operations with Python list
 # Operation            | Time Complexity | Space Complexity
 # -------------------------------------------------------
-# Create Queue         |  O(1)           |   O(1)
-# Enqueue              |  O(n)/O(n^2)    |   O(1)
-# Dequeue              |  O(n)           |   O(1)
+# Create Queue         |  O(1)           |   O(n)
+# Enqueue              |  O(1)           |   O(1)
+# Dequeue              |  O(1)           |   O(1)
 # Peek                 |  O(1)           |   O(1)
 # isEmpty              |  O(1)           |   O(1)
+# isFull               |  O(1)           |   O(1)
 # Delete Entire Queue  |  O(1)           |   O(1)
     
